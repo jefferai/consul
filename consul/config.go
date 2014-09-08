@@ -247,6 +247,9 @@ func DefaultConfig() *Config {
 	conf.SerfLANConfig.ReconnectTimeout = 3 * 24 * time.Hour
 	conf.SerfWANConfig.ReconnectTimeout = 3 * 24 * time.Hour
 
+	// Make this work nicely on the overlay network
+	conf.SerfLANConfig.MemberlistConfig = memberlist.DefaultWANConfig()
+
 	// WAN Serf should use the WAN timing, since we are using it
 	// to communicate between DC's
 	conf.SerfWANConfig.MemberlistConfig = memberlist.DefaultWANConfig()
